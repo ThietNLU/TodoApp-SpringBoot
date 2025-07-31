@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<BorderPane xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1"
+            fx:controller="com.example.todoapp.javafx.controller.MainController">
+    <top>
+        <VBox>
+            <MenuBar>
+                <Menu text="File">
+                    <MenuItem text="Exit" onAction="#exitApplication" />
+                </Menu>
+                <Menu text="View">
+                    <CheckMenuItem fx:id="showCompletedCheckBox" text="Hiển thị đã hoàn thành" />
+                </Menu>
+                <Menu text="Help">
+                    <MenuItem text="About" onAction="#showAbout" />
+                </Menu>
+            </MenuBar>
+            <ToolBar>
+                <TextField fx:id="searchField" promptText="Tìm kiếm todos..." prefWidth="200" />
+                <Separator orientation="VERTICAL" />
+                <Button fx:id="addButton" text="Thêm" onAction="#addTodo" styleClass="primary-button" />
+                <Button fx:id="editButton" text="Sửa" onAction="#editTodo" disable="true" />
+                <Button fx:id="deleteButton" text="Xóa" onAction="#deleteTodo" disable="true" styleClass="danger-button" />
+            </ToolBar>
+        </VBox>
+    </top>
+    <center>
+        <SplitPane dividerPositions="0.4" prefHeight="400.0" prefWidth="800.0">
+            <items>
+                <VBox>
+                    <Label text="Danh sách Todo" styleClass="section-header" />
+                    <ListView fx:id="todoListView" VBox.vgrow="ALWAYS" />
+                </VBox>
+                <VBox>
+                    <VBox spacing="10" style="-fx-padding: 10;">
+                        <Label text="Thêm Todo mới" styleClass="section-header" />
+                        <TextField fx:id="newTodoField" promptText="Nhập tiêu đề todo..." />
+                        <TextArea fx:id="descriptionArea" promptText="Mô tả (tùy chọn)..." prefRowCount="2" />
+                        <HBox spacing="10">
+                            <Label text="Độ ưu tiên:" />
+                            <ComboBox fx:id="priorityComboBox" prefWidth="150" />
+                        </HBox>
+                        <HBox spacing="10">
+                            <Label text="Hạn chót:" />
+                            <HBox fx:id="dueDateContainer" />
+                        </HBox>
+                    </VBox>
+                    <Separator />
+                    <VBox fx:id="detailsPane" spacing="10" style="-fx-padding: 10;" visible="false">
+                        <Label text="Chi tiết Todo" styleClass="section-header" />
+                        <VBox spacing="5">
+                            <Label text="Tiêu đề:" styleClass="detail-label" />
+                            <Label fx:id="selectedTitleLabel" styleClass="detail-value" wrapText="true" />
+                        </VBox>
+                        <VBox spacing="5">
+                            <Label text="Mô tả:" styleClass="detail-label" />
+                            <Label fx:id="selectedDescriptionLabel" styleClass="detail-value" wrapText="true" />
+                        </VBox>
+                        <HBox spacing="20">
+                            <VBox spacing="5">
+                                <Label text="Độ ưu tiên:" styleClass="detail-label" />
+                                <Label fx:id="selectedPriorityLabel" styleClass="detail-value" />
+                            </VBox>
+                            <VBox spacing="5">
+                                <Label text="Hạn chót:" styleClass="detail-label" />
+                                <Label fx:id="selectedDueDateLabel" styleClass="detail-value" />
+                            </VBox>
+                        </HBox>
+                        <VBox spacing="5">
+                            <Label text="Ngày tạo:" styleClass="detail-label" />
+                            <Label fx:id="selectedCreatedLabel" styleClass="detail-value" />
+                        </VBox>
+                        <HBox spacing="10">
+                            <Button text="Hoàn thành/Bỏ hoàn thành" onAction="#toggleComplete" />
+                        </HBox>
+                    </VBox>
+                </VBox>
+            </items>
+        </SplitPane>
+    </center>
+    <bottom>
+        <HBox alignment="CENTER_LEFT" spacing="10" style="-fx-padding: 5 10;">
+            <Label fx:id="statusLabel" text="Sẵn sàng" />
+        </HBox>
+    </bottom>
+</BorderPane>

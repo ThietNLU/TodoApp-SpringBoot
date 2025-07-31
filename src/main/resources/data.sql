@@ -1,0 +1,6 @@
+INSERT INTO todo_items (title, description, completed, priority, created_at, updated_at) VALUES
+                                                                                             ('Học Spring Boot', 'Tìm hiểu về Spring Boot framework và các tính năng cơ bản', false, 'HIGH', CURRENT_TIMESTAMP, CURRENT_TIMESTAMP),
+                                                                                             ('Làm bài tập JavaFX', 'Hoàn thành các bài tập về JavaFX GUI programming', false, 'NORMAL', CURRENT_TIMESTAMP, CURRENT_TIMESTAMP),
+                                                                                             ('Đọc sách Clean Code', 'Đọc và tóm tắt cuốn sách Clean Code của Robert Martin', false, 'LOW', CURRENT_TIMESTAMP, CURRENT_TIMESTAMP),
+                                                                                             ('Tối ưu hóa database', 'Cải thiện performance của các queries database', true, 'URGENT', CURRENT_TIMESTAMP, CURRENT_TIMESTAMP),
+                                                                                             ('Review code team', 'Review pull requests của các thành viên trong team', false, 'HIGH', CURRENT_TIMESTAMP, CURRENT_TIMESTAMP);

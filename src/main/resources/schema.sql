@@ -1,0 +1,11 @@
+CREATE TABLE IF NOT EXISTS todo_items (
+    id BIGINT AUTO_INCREMENT PRIMARY KEY,
+    title VARCHAR(255) NOT NULL,
+    description VARCHAR(1000),
+    completed BOOLEAN NOT NULL DEFAULT FALSE,
+    priority VARCHAR(20) NOT NULL DEFAULT 'NORMAL',
+    created_at TIMESTAMP NOT NULL,
+    updated_at TIMESTAMP,
+    due_date TIMESTAMP
+);
+

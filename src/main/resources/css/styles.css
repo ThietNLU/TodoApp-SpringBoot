@@ -1,0 +1,118 @@
+/* Microsoft Todo Inspired Styles */
+
+.root {
+    -fx-font-family: "Segoe UI", Arial, sans-serif;
+    -fx-font-size: 14px;
+    -fx-background-color: #f5f5f5;
+}
+
+/* Headers */
+.section-header {
+    -fx-font-size: 16px;
+    -fx-font-weight: bold;
+    -fx-text-fill: #2c3e50;
+    -fx-padding: 5 0;
+}
+
+/* Buttons */
+.button {
+    -fx-background-radius: 5px;
+    -fx-border-radius: 5px;
+    -fx-padding: 8 16;
+    -fx-cursor: hand;
+}
+
+.primary-button {
+    -fx-background-color: #3498db;
+    -fx-text-fill: white;
+}
+
+.primary-button:hover {
+    -fx-background-color: #2980b9;
+}
+
+.danger-button {
+    -fx-background-color: #e74c3c;
+    -fx-text-fill: white;
+}
+
+.danger-button:hover {
+    -fx-background-color: #c0392b;
+}
+
+.button:disabled {
+    -fx-opacity: 0.6;
+    -fx-cursor: default;
+}
+
+/* ListView */
+.list-view {
+    -fx-background-color: white;
+    -fx-border-color: #ddd;
+    -fx-border-radius: 5px;
+}
+
+.list-cell {
+    -fx-background-color: white;
+    -fx-border-color: transparent transparent #eee transparent;
+    -fx-border-width: 0 0 1 0;
+    -fx-padding: 8;
+}
+
+.list-cell:selected {
+    -fx-background-color: #e3f2fd;
+}
+
+.list-cell:hover {
+    -fx-background-color: #f5f5f5;
+}
+
+/* Todo Item Styles */
+.todo-title {
+    -fx-font-size: 16px;
+    -fx-font-weight: bold;
+    -fx-text-fill: #2c3e50;
+}
+
+.todo-title.completed {
+    -fx-strikethrough: true;
+    -fx-text-fill: #7f8c8d;
+}
+
+.todo-description {
+    -fx-font-size: 13px;
+    -fx-text-fill: #7f8c8d;
+    -fx-wrap-text: true;
+}
+
+.todo-priority {
+    -fx-font-size: 12px;
+    -fx-font-weight: bold;
+    -fx-padding: 2 6;
+    -fx-background-radius: 10px;
+}
+
+.priority-low {
+    -fx-background-color: #d5f4e6;
+    -fx-text-fill: #27ae60;
+}
+
+.priority-normal {
+    -fx-background-color: #fef9e7;
+    -fx-text-fill: #f39c12;
+}
+
+.priority-high {
+    -fx-background-color: #fadbd8;
+    -fx-text-fill: #e74c3c;
+}
+
+/* Detail Labels */
+.detail-label {
+    -fx-font-weight: bold;
+    -fx-text-fill: #34495e;
+}
+
+.detail-value {
+    -fx-text-fill: #2c3e50;
+}
