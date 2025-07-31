@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Todo App - Quản lý công việc</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.0/font/bootstrap-icons.css" rel="stylesheet">
+    <link href="/css/web-styles.css" rel="stylesheet">
+</head>
+<body>
+    <div class="container-fluid">
+        <div class="row">
+            <!-- Header -->
+            <div class="col-12">
+                <nav class="navbar navbar-expand-lg navbar-dark bg-primary mb-4">
+                    <div class="container">
+                        <span class="navbar-brand mb-0 h1">
+                            <i class="bi bi-check-square"></i> Todo App
+                        </span>
+                        <div class="navbar-nav ms-auto">
+                            <span class="navbar-text" id="totalTasks">
+                                Tổng: <span id="taskCount">0</span> công việc
+                            </span>
+                        </div>
+                    </div>
+                </nav>
+            </div>
+        </div>
+
+        <div class="container">
+            <div class="row">
+                <!-- Add Todo Form -->
+                <div class="col-12 mb-4">
+                    <div class="card">
+                        <div class="card-header">
+                            <h5 class="mb-0"><i class="bi bi-plus-circle"></i> Thêm công việc mới</h5>
+                        </div>
+                        <div class="card-body">
+                            <form id="todoForm">
+                                <div class="row">
+                                    <div class="col-md-6 mb-3">
+                                        <label for="title" class="form-label">Tiêu đề *</label>
+                                        <input type="text" class="form-control" id="title" required maxlength="255">
+                                    </div>
+                                    <div class="col-md-3 mb-3">
+                                        <label for="priority" class="form-label">Độ ưu tiên</label>
+                                        <select class="form-select" id="priority">
+                                            <option value="LOW">Thấp</option>
+                                            <option value="NORMAL" selected>Bình thường</option>
+                                            <option value="HIGH">Cao</option>
+                                            <option value="URGENT">Khẩn cấp</option>
+                                        </select>
+                                    </div>
+                                    <div class="col-md-3 mb-3">
+                                        <label for="dueDate" class="form-label">Hạn hoàn thành</label>
+                                        <input type="datetime-local" class="form-control" id="dueDate">
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-12 mb-3">
+                                        <label for="description" class="form-label">Mô tả</label>
+                                        <textarea class="form-control" id="description" rows="3" maxlength="1000"></textarea>
+                                    </div>
+                                </div>
+                                <div class="d-grid gap-2 d-md-flex justify-content-md-end">
+                                    <button type="button" class="btn btn-secondary me-md-2" id="cancelBtn" style="display: none;">Hủy</button>
+                                    <button type="submit" class="btn btn-primary" id="submitBtn">
+                                        <i class="bi bi-plus"></i> Thêm
+                                    </button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Filter and Search -->
+                <div class="col-12 mb-4">
+                    <div class="card">
+                        <div class="card-body">
+                            <div class="row align-items-end">
+                                <div class="col-md-4 mb-2">
+                                    <label for="searchInput" class="form-label">Tìm kiếm</label>
+                                    <input type="text" class="form-control" id="searchInput" placeholder="Tìm theo tiêu đề hoặc mô tả...">
+                                </div>
+                                <div class="col-md-3 mb-2">
+                                    <label for="filterStatus" class="form-label">Trạng thái</label>
+                                    <select class="form-select" id="filterStatus">
+                                        <option value="all">Tất cả</option>
+                                        <option value="pending">Chưa hoàn thành</option>
+                                        <option value="completed">Đã hoàn thành</option>
+                                    </select>
+                                </div>
+                                <div class="col-md-3 mb-2">
+                                    <label for="filterPriority" class="form-label">Độ ưu tiên</label>
+                                    <select class="form-select" id="filterPriority">
+                                        <option value="all">Tất cả</option>
+                                        <option value="URGENT">Khẩn cấp</option>
+                                        <option value="HIGH">Cao</option>
+                                        <option value="NORMAL">Bình thường</option>
+                                        <option value="LOW">Thấp</option>
+                                    </select>
+                                </div>
+                                <div class="col-md-2 mb-2">
+                                    <button type="button" class="btn btn-outline-secondary w-100" id="clearFilters">
+                                        <i class="bi bi-x-circle"></i> Xóa bộ lọc
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Todo List -->
+                <div class="col-12">
+                    <div class="card">
+                        <div class="card-header d-flex justify-content-between align-items-center">
+                            <h5 class="mb-0"><i class="bi bi-list-task"></i> Danh sách công việc</h5>
+                            <div class="btn-group btn-group-sm" role="group">
+                                <button type="button" class="btn btn-outline-primary" id="sortByDate">
+                                    <i class="bi bi-calendar"></i> Sắp xếp theo ngày
+                                </button>
+                                <button type="button" class="btn btn-outline-primary" id="sortByPriority">
+                                    <i class="bi bi-exclamation-triangle"></i> Sắp xếp theo độ ưu tiên
+                                </button>
+                            </div>
+                        </div>
+                        <div class="card-body">
+                            <div id="todoList">
+                                <div class="text-center py-5" id="emptyState">
+                                    <i class="bi bi-inbox display-1 text-muted"></i>
+                                    <p class="text-muted mt-3">Chưa có công việc nào. Hãy thêm công việc đầu tiên!</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Loading Spinner -->
+    <div id="loadingSpinner" class="position-fixed top-50 start-50 translate-middle" style="display: none; z-index: 9999;">
+        <div class="spinner-border text-primary" role="status">
+            <span class="visually-hidden">Loading...</span>
+        </div>
+    </div>
+
+    <!-- Toast Container -->
+    <div class="toast-container position-fixed bottom-0 end-0 p-3" id="toastContainer"></div>
+
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <!-- Custom JS -->
+    <script src="/js/todo-app.js"></script>
+</body>
+</html>

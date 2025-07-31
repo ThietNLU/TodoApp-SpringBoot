@@ -5,6 +5,7 @@ module todoapp {
     requires spring.boot.autoconfigure;
     requires spring.context;
     requires spring.web;
+    requires spring.webmvc;
     requires spring.data.jpa;
     requires jakarta.persistence;
     requires jakarta.validation;
@@ -14,20 +15,23 @@ module todoapp {
     requires java.desktop;
     requires spring.beans;
     requires org.hibernate.orm.core;
+    requires spring.boot.starter.thymeleaf;
 
-    opens com.example.todoapp to spring.core;
-    opens com.example.todoapp.model;
-    opens com.example.todoapp.javafx.controller;
-    opens com.example.todoapp.controller;
-    opens com.example.todoapp.service;
-    opens com.example.todoapp.repository to spring.core;
+    // Open packages to Spring and related frameworks
+    opens com.example.todoapp to spring.core, spring.beans, spring.context;
+    opens com.example.todoapp.model to org.hibernate.orm.core, spring.core;
+    opens com.example.todoapp.javafx.controller to javafx.fxml, spring.core;
+    opens com.example.todoapp.controller to spring.core, spring.beans, spring.web;
+    opens com.example.todoapp.service to spring.core, spring.beans;
+    opens com.example.todoapp.repository to spring.core, spring.data.jpa;
     opens com.example.todoapp.javafx.service to spring.core;
 
+    // Export packages
     exports com.example.todoapp;
     exports com.example.todoapp.javafx;
     exports com.example.todoapp.model;
-    exports com.example.todoapp.controller to spring.beans;
-    exports com.example.todoapp.service to spring.beans;
-    exports com.example.todoapp.javafx.controller to spring.beans;
-    exports com.example.todoapp.javafx.service to spring.beans;
+    exports com.example.todoapp.controller;
+    exports com.example.todoapp.service;
+    exports com.example.todoapp.javafx.controller;
+    exports com.example.todoapp.javafx.service;
 }
